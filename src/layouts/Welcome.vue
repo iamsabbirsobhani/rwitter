@@ -11,7 +11,7 @@
         <div class="right-cover-2">
           <i class="fab fa-twitter"></i>
           <h1>Happening now</h1>
-          <h3>Join Twitter today</h3>
+          <h3>Join Twitter today.</h3>
           <div class="button">
             <q-btn
               unelevated
@@ -38,11 +38,52 @@
   </div>
 
   <!-- footer section -->
-  <footer></footer>
+  <footer class="fit row wrap justify-center items-center content-center">
+
+    <a @click="cloneDialog">About</a>
+    <a @click="cloneDialog">Help Center</a>
+    <a @click="cloneDialog">Terms of Service</a>
+    <a @click="cloneDialog">Privacy Policy</a>
+    <a @click="cloneDialog">Cookie Policy</a>
+    <a @click="cloneDialog">Ads info</a>
+    <a @click="cloneDialog">Blog</a>
+    <a @click="cloneDialog">Status</a>
+    <a @click="cloneDialog">Careers</a>
+    <a @click="cloneDialog">Brand Resources</a>
+    <a @click="cloneDialog">Advertising</a>
+    <a @click="cloneDialog">Marketing</a>
+    <a @click="cloneDialog">Twitter for Business</a>
+    <a @click="cloneDialog">Developers</a>
+    <a @click="cloneDialog">Directory</a>
+    <a @click="cloneDialog">Settings</a>
+    <span href="#">© 2021 Rwitter, Inc.</span>
+  </footer>
+  <Toolbar @hideDialog="hideDialog" v-if="showTools" :showTool="showTools" />
 </template>
 
 <script>
-export default {};
+import Toolbar from "../pages/Toolbar.vue";
+import { ref, computed } from "vue";
+export default {
+  components: { Toolbar },
+  props: { hideDialog: Boolean },
+
+  setup(props) {
+    const showTools = ref(false);
+
+    showTools.value = props.hideDialog;
+    const cloneDialog = () => {
+      showTools.value = true;
+    };
+
+    const hideDialog = () => {
+      showTools.value = false;
+    };
+
+    return { showTools, cloneDialog, hideDialog};
+  },
+
+};
 </script>
 
 <style scoped>
@@ -58,7 +99,7 @@ export default {};
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 92vh;
+  height: 90vh;
   max-width: 128vh;
   flex: 1;
 }
@@ -75,12 +116,12 @@ export default {};
   opacity: 1;
   position: absolute;
   width: 100%;
-  height: 92vh;
+  height: 90vh;
   z-index: -1;
 }
 
 .left .fa-twitter {
-  font-size: 190px;
+  font-size: 210px;
   color: white;
 }
 
@@ -100,6 +141,7 @@ export default {};
 .right {
   display: flex;
   flex: 0 0 43em;
+  height: 90vh;
 }
 
 .right-cover {
@@ -138,4 +180,28 @@ h3 {
 }
 
 /* end of flex right */
+
+/* footer */
+footer {
+  padding: 12px 16px;
+}
+
+footer span {
+  color: rgb(91, 112, 131);
+  font-size: 13px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  padding-right: 16px;
+  color: rgb(91, 112, 131);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+a:hover {
+  text-decoration-line: underline;
+}
+/* end of footer */
 </style>
