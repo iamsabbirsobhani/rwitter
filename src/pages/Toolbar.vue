@@ -26,11 +26,13 @@
       </q-toolbar>
 
       <q-card-section class="row items-center q-pb-none">
-        <div class="text-h6" style="color: #1da1f2">Statement</div>
+        <p class="text-h6" style="color: #1da1f2">Statement</p>
         <q-space />
-        <p class="text-h6" style="color: red">
+        <div>
+        <p class="text-h6" style="color: gray;">
           Not everything could be implemented due to technical constraints.
         </p>
+        </div>
       </q-card-section>
       <q-card-section>
         <div class="text-h6" style="color: #1da1f2">Acknowledge</div>

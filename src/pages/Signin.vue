@@ -69,7 +69,7 @@
         <q-toggle v-model="accept" label="I accept the license and terms" />
 
         <div class="q-py-md">
-          <q-btn label="Log in" type="submit" color="primary" />
+          <q-btn :loading="loading" label="Log in" type="submit" color="primary" />
           <q-btn
             label="Reset"
             type="reset"
@@ -96,7 +96,7 @@ import useLogin from "../composable/useLogin";
 
 export default {
   setup() {
-    const { login, error } = useLogin();
+    const { login, error, loading } = useLogin();
     const email = ref(null);
     const password = ref(null);
     const isPwd = ref(true);
@@ -160,6 +160,7 @@ export default {
       signUp,
       error,
       closeBanner,
+      loading
     };
   },
 };

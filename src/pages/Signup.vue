@@ -45,7 +45,7 @@
           v-model="password"
           :type="isPwd ? 'password' : 'text'"
           label="Password"
-          hint="Enter your password"
+          hint="Enter a password"
           required
         >
           <template v-slot:append>
@@ -77,7 +77,7 @@
         <q-toggle v-model="accept" label="I accept the license and terms" />
 
         <div class="q-py-md">
-          <q-btn label="Sign up" type="submit" color="primary" />
+          <q-btn :loading="loading" label="Sign up" type="submit" color="primary" />
           <q-btn
             label="Reset"
             type="reset"
@@ -106,14 +106,17 @@ export default {
     const name = ref(null);
     const email = ref(null);
     const password = ref(null);
+    const submitting = ref(false);
     const isPwd = ref(true);
     const accept = ref(false);
     const $q = useQuasar();
     const router = useRouter();
-    const { signup, error } = useSignup();
+    const { signup, error, loading } = useSignup();
 
     const handleSignup = async () => {
+      submitting.value = true
       let res = await signup(email.value, password.value, name.value);
+      submitting.value = false
 
       if (!error.value) {
         $q.notify({
@@ -149,6 +152,7 @@ export default {
       password.value = null;
       accept.value = false;
     };
+
     // end of signup notify
     const signIn = () => {
       router.push({ path: "signin" });
@@ -168,7 +172,9 @@ export default {
       onReset,
       signIn,
       error,
-      closeBanner
+      closeBanner,
+      submitting,
+      loading
     };
   },
 };
