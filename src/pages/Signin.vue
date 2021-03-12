@@ -65,10 +65,10 @@
         </div>
       </q-card-section>
 
-    <q-card-section class="links">
+      <q-card-section class="links">
         <span>Don't have an account?</span>.
         <a @click="signUp">Sign up for Rwitter</a>
-    </q-card-section>
+      </q-card-section>
     </q-card>
   </q-form>
 </template>
@@ -76,7 +76,7 @@
 <script>
 import { ref } from "vue";
 import { useQuasar } from "quasar";
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
@@ -86,10 +86,7 @@ export default {
     const isPwd = ref(true);
     const accept = ref(false);
     const $q = useQuasar();
-    const router = useRouter()
-
-
-
+    const router = useRouter();
 
     // signup notify
     const onSubmit = () => {
@@ -104,8 +101,8 @@ export default {
         $q.notify({
           color: "green-4",
           textColor: "white",
-          icon: "fas fa-user-plus",
-          message: "Signed up",
+          icon: "face",
+          message: "Logged in",
         });
       }
     };
@@ -119,8 +116,8 @@ export default {
     // end of signup notify
 
     const signUp = () => {
-      router.push({ path: 'signup' })
-    }
+      router.push({ path: "signup" });
+    };
     return { name, email, password, isPwd, accept, onSubmit, onReset, signUp };
   },
 };
@@ -148,9 +145,9 @@ export default {
   align-items: center;
 }
 
-.links a{
-    color: rgba(29, 161, 242, 1);
-    text-decoration-line: underline;
-    cursor: pointer;
+.links a {
+  color: rgba(29, 161, 242, 1);
+  text-decoration-line: underline;
+  cursor: pointer;
 }
 </style>
