@@ -66,7 +66,7 @@
       </q-card-section>
 
     <q-card-section class="links">
-        <span>Forgot password?</span>.
+        <span>Don't have an account?</span>.
         <a @click="signUp">Sign up for Rwitter</a>
     </q-card-section>
     </q-card>

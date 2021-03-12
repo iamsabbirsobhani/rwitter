@@ -73,7 +73,7 @@
         </div>
       </q-card-section>
           <q-card-section class="links">
-        <span>Already sign in?</span>.
+        <span>Already signed up?</span>.
         <a @click="signIn">Sign in for Rwitter</a>
     </q-card-section>
     </q-card>
