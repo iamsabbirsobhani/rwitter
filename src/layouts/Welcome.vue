@@ -266,6 +266,8 @@ h1{
 h3{
   font-size: 20px;
 }
-
+footer{
+  padding: 25px 16px;
+}
 }
 </style>

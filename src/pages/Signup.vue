@@ -220,5 +220,8 @@ export default {
   .my-form{
     margin: 0;
   }
+  .q-pa-md {
+    padding: 4px 4px;
+}
 }
 </style>
