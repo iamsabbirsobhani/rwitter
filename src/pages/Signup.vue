@@ -58,6 +58,21 @@
         </q-input>
       </q-card-section>
 
+      <q-card-section v-if="error">
+        <q-banner dense inline-actions class="text-white bg-red">
+          {{ error }}
+          <template v-slot:action>
+            <q-btn
+              @click="closeBanner"
+              round
+              icon="fas fa-times"
+              flat
+              color="white"
+            />
+          </template>
+        </q-banner>
+      </q-card-section>
+
       <q-card-section>
         <q-toggle v-model="accept" label="I accept the license and terms" />
 
@@ -72,10 +87,10 @@
           />
         </div>
       </q-card-section>
-          <q-card-section class="links">
+      <q-card-section class="links">
         <span>Already signed up?</span>.
         <a @click="signIn">Sign in for Rwitter</a>
-    </q-card-section>
+      </q-card-section>
     </q-card>
   </q-form>
 </template>
@@ -83,7 +98,8 @@
 <script>
 import { ref } from "vue";
 import { useQuasar } from "quasar";
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
+import useSignup from "../composable/useSignup";
 
 export default {
   setup() {
@@ -93,10 +109,25 @@ export default {
     const isPwd = ref(true);
     const accept = ref(false);
     const $q = useQuasar();
-    const router = useRouter()
+    const router = useRouter();
+    const { signup, error } = useSignup();
 
+    const handleSignup = async () => {
+      let res = await signup(email.value, password.value, name.value);
 
-
+      if (!error.value) {
+        $q.notify({
+          color: "green-4",
+          textColor: "white",
+          icon: "fas fa-user-plus",
+          message: "Signed up",
+        });
+        name.value = null
+        email.value = null
+        password.value = null
+        accept.value = false
+      }
+    };
 
     // signup notify
     const onSubmit = () => {
@@ -108,12 +139,7 @@ export default {
           message: "You need to accept the license and terms first",
         });
       } else {
-        $q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "fas fa-user-plus",
-          message: "Signed up",
-        });
+        handleSignup();
       }
     };
 
@@ -125,10 +151,25 @@ export default {
     };
     // end of signup notify
     const signIn = () => {
-      router.push({ path: 'signin' })
-    }
+      router.push({ path: "signin" });
+    };
 
-    return { name, email, password, isPwd, accept, onSubmit, onReset, signIn };
+    const closeBanner = () => {
+      error.value = null;
+    };
+
+    return {
+      name,
+      email,
+      password,
+      isPwd,
+      accept,
+      onSubmit,
+      onReset,
+      signIn,
+      error,
+      closeBanner
+    };
   },
 };
 </script>
@@ -154,7 +195,7 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-.links a{
+.links a {
   cursor: pointer;
   color: rgba(29, 161, 242, 1);
   text-decoration-line: underline;

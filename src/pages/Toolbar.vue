@@ -25,13 +25,15 @@
         />
       </q-toolbar>
 
-        <q-card-section class="row items-center q-pb-none">
-        <div class="text-h6">Statement</div>
+      <q-card-section class="row items-center q-pb-none">
+        <div class="text-h6" style="color: #1da1f2">Statement</div>
         <q-space />
-        <h6>Not everything could be implemented due to technical constraints.</h6>
-        </q-card-section>
+        <p class="text-h6" style="color: red">
+          Not everything could be implemented due to technical constraints.
+        </p>
+      </q-card-section>
       <q-card-section>
-        <div class="text-h6">Acknowledge</div>
+        <div class="text-h6" style="color: #1da1f2">Acknowledge</div>
         This is a clone project influenced by Twitter. It has been created, and
         it did not mean to defame or degrade Twitter, and for sure, it has not
         come to compete with Twitter as well. If Twitter wants, we are ready to

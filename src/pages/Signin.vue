@@ -50,6 +50,21 @@
         </q-input>
       </q-card-section>
 
+      <q-card-section v-if="error">
+        <q-banner dense inline-actions class="text-white bg-red">
+          {{ error }}
+          <template v-slot:action>
+            <q-btn
+              @click="closeBanner"
+              round
+              icon="fas fa-times"
+              flat
+              color="white"
+            />
+          </template>
+        </q-banner>
+      </q-card-section>
+
       <q-card-section>
         <q-toggle v-model="accept" label="I accept the license and terms" />
 
@@ -77,10 +92,11 @@
 import { ref } from "vue";
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
+import useLogin from "../composable/useLogin";
 
 export default {
   setup() {
-    const name = ref(null);
+    const { login, error } = useLogin();
     const email = ref(null);
     const password = ref(null);
     const isPwd = ref(true);
@@ -88,7 +104,24 @@ export default {
     const $q = useQuasar();
     const router = useRouter();
 
-    // signup notify
+    const handleLogin = async () => {
+      let res = await login(email.value, password.value);
+
+      if (!error.value) {
+        console.log("User logged in");
+        $q.notify({
+          color: "green-4",
+          textColor: "white",
+          icon: "face",
+          message: "Logged in",
+        });
+        email.value = null;
+        password.value = null;
+        accept.value = false
+      }
+    };
+
+    // signin notify
     const onSubmit = () => {
       if (accept.value !== true) {
         $q.notify({
@@ -98,17 +131,11 @@ export default {
           message: "You need to accept the license and terms first",
         });
       } else {
-        $q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "face",
-          message: "Logged in",
-        });
+        handleLogin();
       }
     };
 
     const onReset = () => {
-      name.value = null;
       email.value = null;
       password.value = null;
       accept.value = false;
@@ -118,7 +145,22 @@ export default {
     const signUp = () => {
       router.push({ path: "signup" });
     };
-    return { name, email, password, isPwd, accept, onSubmit, onReset, signUp };
+
+    const closeBanner = () => {
+      error.value = null;
+    };
+
+    return {
+      email,
+      password,
+      isPwd,
+      accept,
+      onSubmit,
+      onReset,
+      signUp,
+      error,
+      closeBanner,
+    };
   },
 };
 </script>
