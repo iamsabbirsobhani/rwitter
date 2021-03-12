@@ -11,9 +11,10 @@
         <div class="right-cover-2">
           <i class="fab fa-twitter"></i>
           <h1>Happening now</h1>
-          <h3>Join Twitter today.</h3>
+          <h3>Join Rwitter <q-tooltip class="bg-primary" anchor="top middle">Influenced by Twitter</q-tooltip>today.</h3>
           <div class="button">
             <q-btn
+              @click="signUp"
               unelevated
               rounded
               color="primary"
@@ -22,6 +23,7 @@
               class="full-width"
             />
             <q-btn
+              @click="signIn"
               unelevated
               :outline="true"
               rounded
@@ -64,11 +66,15 @@
 <script>
 import Toolbar from "../pages/Toolbar.vue";
 import { ref, computed } from "vue";
+import { useRouter } from 'vue-router'
+import Signup from 'src/pages/Signup.vue';
 export default {
-  components: { Toolbar },
+  components: { Toolbar, Signup },
   props: { hideDialog: Boolean },
 
-  setup(props) {
+  setup(props, context) {
+    const router = useRouter()
+
     const showTools = ref(false);
 
     showTools.value = props.hideDialog;
@@ -80,7 +86,14 @@ export default {
       showTools.value = false;
     };
 
-    return { showTools, cloneDialog, hideDialog};
+    const signUp = () => {
+      router.push({ path: 'signup' })
+    }
+    const signIn = () => {
+      router.push({ path: 'signin' })
+    }
+
+    return { showTools, cloneDialog, hideDialog, signUp, signIn};
   },
 
 };
@@ -196,6 +209,7 @@ a {
   font-size: 13px;
   cursor: pointer;
   padding-right: 16px;
+  margin: 2px;
   color: rgb(91, 112, 131);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;

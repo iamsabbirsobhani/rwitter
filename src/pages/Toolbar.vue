@@ -1,5 +1,10 @@
 <template>
-  <q-dialog v-model="toolbar">
+  <q-dialog
+    v-model="toolbar"
+    persistent
+    transition-show="scale"
+    transition-hide="scale"
+  >
     <q-card>
       <q-toolbar>
         <q-avatar>
@@ -7,8 +12,7 @@
         </q-avatar>
 
         <q-toolbar-title
-          ><span class="text-weight-bold">Rwitter</span>
-          Says:</q-toolbar-title
+          ><span class="text-weight-bold">Rwitter</span> Says:</q-toolbar-title
         >
 
         <q-btn
@@ -21,9 +25,19 @@
         />
       </q-toolbar>
 
+        <q-card-section class="row items-center q-pb-none">
+        <div class="text-h6">Statement</div>
+        <q-space />
+        <h6>Not everything could be implemented due to technical constraints.</h6>
+        </q-card-section>
       <q-card-section>
-        This is a clone project influenced by Twitter. It has been created, and it did not mean to defame or degrade Twitter, and for sure, it has not come to compete with Twitter as well. If Twitter wants, we are ready to shut down anytime. Eventually, this project is only for fun and learning purpose.
-        <br>
+        <div class="text-h6">Acknowledge</div>
+        This is a clone project influenced by Twitter. It has been created, and
+        it did not mean to defame or degrade Twitter, and for sure, it has not
+        come to compete with Twitter as well. If Twitter wants, we are ready to
+        shut down anytime. Eventually, this project is only for fun and learning
+        purpose.
+        <br />
         Thank you.
       </q-card-section>
     </q-card>
