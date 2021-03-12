@@ -195,13 +195,11 @@ export default {
 }
 @media (max-width: 400px){
   .my-card{
-    width: 290px
+    width: 290px;
+    padding: 4px 4px;
   }
   .my-form{
     margin: 0;
   }
-  .q-pa-md {
-    padding: 4px 4px;
-}
 }
 </style>
