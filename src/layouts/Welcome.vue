@@ -11,7 +11,12 @@
         <div class="right-cover-2">
           <i class="fab fa-twitter"></i>
           <h1>Happening now</h1>
-          <h3>Join Rwitter <q-tooltip class="bg-primary" anchor="top middle">Influenced by Twitter</q-tooltip>today.</h3>
+          <h3>
+            Join Rwitter
+            <q-tooltip class="bg-primary" anchor="top middle"
+              >Influenced by Twitter</q-tooltip
+            >today.
+          </h3>
           <div class="button">
             <q-btn
               @click="signUp"
@@ -41,7 +46,6 @@
 
   <!-- footer section -->
   <footer class="fit row wrap justify-center items-center content-center">
-
     <a @click="cloneDialog">About</a>
     <a @click="cloneDialog">Help Center</a>
     <a @click="cloneDialog">Terms of Service</a>
@@ -66,14 +70,14 @@
 <script>
 import Toolbar from "../pages/Toolbar.vue";
 import { ref, computed } from "vue";
-import { useRouter } from 'vue-router'
-import Signup from 'src/pages/Signup.vue';
+import { useRouter } from "vue-router";
+import Signup from "src/pages/Signup.vue";
 export default {
   components: { Toolbar, Signup },
   props: { hideDialog: Boolean },
 
   setup(props, context) {
-    const router = useRouter()
+    const router = useRouter();
 
     const showTools = ref(false);
 
@@ -87,15 +91,14 @@ export default {
     };
 
     const signUp = () => {
-      router.push({ path: 'signup' })
-    }
+      router.push({ path: "signup" });
+    };
     const signIn = () => {
-      router.push({ path: 'signin' })
-    }
+      router.push({ path: "signin" });
+    };
 
-    return { showTools, cloneDialog, hideDialog, signUp, signIn};
+    return { showTools, cloneDialog, hideDialog, signUp, signIn };
   },
-
 };
 </script>
 
@@ -218,4 +221,51 @@ a:hover {
   text-decoration-line: underline;
 }
 /* end of footer */
+
+/* media query */
+@media (max-width: 830px) {
+  .main {
+    flex-direction: column-reverse;
+  }
+  .left {
+    height: 20vh;
+  }
+  .img {
+    height: 40vh;
+  }
+  .right {
+    align-self: center;
+  }
+  .button {
+    align-self: center;
+    width: 350px;
+  }
+  .right .fa-twitter {
+    align-self: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .right-cover-2 {
+    padding: 5px;
+  }
+  .button {
+    align-self: center;
+    width: 270px;
+  }
+    .img {
+    height: 20vh;
+  }
+  .left .fa-twitter {
+  font-size: 100px;
+  color: white;
+}
+h1{
+  font-size: 30px;
+}
+h3{
+  font-size: 20px;
+}
+
+}
 </style>

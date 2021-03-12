@@ -193,4 +193,13 @@ export default {
   text-decoration-line: underline;
   cursor: pointer;
 }
+@media (max-width: 400px){
+  .my-card{
+    width: 290px
+  }
+  .my-form{
+    margin: 0;
+  }
+
+}
 </style>

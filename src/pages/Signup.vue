@@ -87,6 +87,8 @@
           />
         </div>
       </q-card-section>
+
+
       <q-card-section class="links">
         <span>Already signed up?</span>.
         <a @click="signIn">Sign in for Rwitter</a>
@@ -161,6 +163,9 @@ export default {
     const closeBanner = () => {
       error.value = null;
     };
+    const showPop = ref(false)
+
+    // const show
 
     return {
       name,
@@ -174,7 +179,9 @@ export default {
       error,
       closeBanner,
       submitting,
-      loading
+      loading,
+
+      showPop
     };
   },
 };
@@ -205,5 +212,13 @@ export default {
   cursor: pointer;
   color: rgba(29, 161, 242, 1);
   text-decoration-line: underline;
+}
+@media (max-width: 400px){
+  .my-card{
+    width: 290px
+  }
+  .my-form{
+    margin: 0;
+  }
 }
 </style>
