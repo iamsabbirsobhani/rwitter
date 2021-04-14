@@ -10,6 +10,7 @@ const routes = [
 
   { path: '/signup', component: () => import('pages/Signup.vue') },
   { path: '/signin', component: () => import('pages/Signin.vue') },
+  { path: '/home', component: () => import('components/Home.vue') },
   // Always leave this as last one,
   // but you can also remove it
   {

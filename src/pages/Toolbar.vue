@@ -54,15 +54,15 @@ import Welcome from "src/layouts/Welcome.vue";
 
 export default {
   components: { Welcome },
-  props: { showTool: Boolean },
+
   setup(props, context) {
-    const toolbar = ref(false);
+    const toolbar = ref(true);
 
     const hideContent = () => {
       context.emit("hideDialog");
     };
 
-    toolbar.value = props.showTool;
+    // toolbar.value = props.showTool;
     return { toolbar, hideContent };
   },
 };
